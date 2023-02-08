@@ -32,4 +32,4 @@ This now runs in under 4h on my laptop, so I've stopped here, but we could do si
 # Example solutions 
 A few are stored in the solution folder, but here is one that I think looks nice. Of course, the minimum distance is the one between pentagons 0 and 16
 
-![solution](<solution/plots/example 0.png>)
+![solution](<assets/example 0.png>)
