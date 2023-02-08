@@ -2,7 +2,7 @@
 ## Intro
 This is my (accepted!) solution to the [Nov 2022 Jane Street Problem](https://www.janestreet.com/puzzles/pent-up-frustration-2-index/).
 
-Here I tried a search-based approach, wich judging by the official solutions might have been the only way. 
+I tried a search-based approach, wich judging by the official solutions might have been the only way. 
 
 ## Strategy
 In broad strokes, I first tried to reduce as much as possible the search space, and then looked for a solution within it. 
@@ -13,31 +13,20 @@ I divided the excercise in three parts
 While there are $5^{16}$ ways of creating chains of pentagons, quite a lot of them are obviously not worth trying. In particular:
 - at the end of any chain, there are only 4 useful sides of a pentagon on which we can attach another one, as one is already taken. This brings us down to $4^{16}$ combinations
 - there are only 2 sets of three pentagons worth exploring, all others are just the same, but turned/flipped around. This brings us down to $2*4^{14}$ combinations
+
 <img src="assets/min_chain_0.png" alt="Example 1" width="300"/>  <img src="assets/min_chain_1.png" alt="Example 2" width="300"/>
 
 This way we no longer have to try billions of combinations, but just a few million!
 
 ### 2. Exploration-based reduction of the search space
 
-Here I look at all the combinations of 7 moves, to quickly get a sense of what moves are valid and invalid. This knowledge will then be useful to compose sequences in the futures
+I look at all the combinations of 7 moves, to quickly get a sense of what moves are valid and invalid. This knowledge will then be useful to compose sequences in the futures
 
 ### 3. Looking for a solution
-Here I try out all the plausible combinations of 16 moves. This is in itself divided in two:
+I try out all the plausible combinations of 16 moves. This is in itself divided in two:
 1. Chain Generation - the sets of 16 moves are generated as one of the two possible set of two initial moves (see point 2. in the intro), followed by some combination of two of the valid sets of 7 moves (2+7+7 = 16)
 2. Computing the minimum distance between pentagons - this is just a bit of high school maths
 
-### 4. Bonus section - Plots
-...
-
-## Code Structure
-- main.py: contains the layout of the strategy above
-- pentagon and chain: class definitions for a pentagon, and a chain of pentagons, as well as their useful methods - such as computing where the edges and vertices of pentagons are, and whether pentagons overlap, how distant the are etc.
-- chain generation: definition of the generators of the sets of 16 moves, which describe how a chain of pentagons will need to be created
-
-## Speeding up the process
-To have this running in a decent time, without wasting a ton of my time, I optimised this in two ways:
-1. The heavier functions are compiled JIT using numba
-2. Section 2.2 of the strategy is ran in parallel, given that it is embarassingly parallel. This is done by creating batches of a few thousand sets of moves, having each worker compute the minimum distance from its batch. The absolute minimum difference is of course the minimum of the miniums from all batches
 
 This now runs in under 4h on my laptop, so I've stopped here, but we could do significantly better.  
 # Example solutions 
