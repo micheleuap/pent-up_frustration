@@ -1,4 +1,4 @@
-# Pent-up_frustration
+# Pent-up frustration 2
 ## Intro
 This is my (accepted!) solution to the [Nov 2022 Jane Street Problem](https://www.janestreet.com/puzzles/pent-up-frustration-2-index/).
 
